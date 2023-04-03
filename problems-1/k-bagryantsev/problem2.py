@@ -1,5 +1,5 @@
+from collections.abc import Iterable
 from sys import stderr
-from typing import List
 
 
 def get_user_input() -> List[int]:
@@ -10,7 +10,7 @@ def get_user_input() -> List[int]:
         print(ve, file=stderr)
 
 
-def trim_numbers(inf: int, sup: int, numbers: List[int]) -> List[int]:
+def trim_numbers(inf: int, sup: int, numbers: Iterable[int]) -> Iterable[int]:
     """Replaces all integers out of range with lower or upper bound respectively"""
     return [inf if i < inf else (sup if i > sup else i) for i in numbers]
 
