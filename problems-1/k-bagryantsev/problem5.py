@@ -18,13 +18,14 @@ def eratosthenes_sieve(_divisor: int) -> Generator[int, Any, None]:
 def factorizate_number(a: int) -> dict:
     divisors = dict()
     divisor = 2
+    sieve = eratosthenes_sieve(divisor)
     while divisor <= a:
         while a % divisor == 0:
             if divisors.get(divisor) is None:
                 divisors[divisor] = 0
             divisors[divisor] += 1
             a //= divisor
-        divisor = next(eratosthenes_sieve(divisor))
+        divisor = next(sieve)
     return divisors
 
 
