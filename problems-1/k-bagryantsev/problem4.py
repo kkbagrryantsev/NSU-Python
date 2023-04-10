@@ -19,7 +19,7 @@ def bottles(_state: int) -> str:
             continue
         yield f'There’ll be {NUMBERS[_state]} green bottle{"s" if _state != 1 else ""} hanging on the wall'
     else:
-        print("There’ll be no green bottles hanging on the wall")
+        yield "There’ll be no green bottles hanging on the wall"
 
 
 if __name__ == '__main__':
