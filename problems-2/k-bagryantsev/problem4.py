@@ -1,3 +1,4 @@
+import sys
 from collections.abc import Iterator
 from sys import stderr
 
@@ -49,4 +50,4 @@ if __name__ == '__main__':
             print(f"Positions:", *_result[:5], "...")
     except Exception as e:
         print(e, file=stderr)
-        exit("Check pi.txt is in current working directory and is not corrupted.")
+        sys.exit("Check pi.txt is in current working directory and is not corrupted.")
