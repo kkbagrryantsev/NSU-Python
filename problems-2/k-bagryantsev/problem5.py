@@ -30,5 +30,4 @@ if __name__ == '__main__':
         _n = int(input())
         print(*primes(_n))
     except Exception as e:
-        print(f"{e}\nExpected a positive integer", file=stderr)
-        exit()
+        exit(f"{e}\nExpected a positive integer")
