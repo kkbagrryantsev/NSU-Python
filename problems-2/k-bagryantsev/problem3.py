@@ -5,7 +5,8 @@ from os.path import isfile
 
 
 def print_dir_files(dirpath: str) -> None:
-    """Prints all dir files. Files are sorted by their size in descending order
+    """Prints all dir files' name & size pairs.
+    Files are sorted by their size in descending order
     and by name in ascending order.
 
     Link to the documentation, which guarantees maintaining relative order of equal elements:
@@ -14,7 +15,8 @@ def print_dir_files(dirpath: str) -> None:
         files = filter(isfile, listdir(dirpath))
         files = [(file, stat(file).st_size) for file in files]
     except Exception as e:
-        raise e
+        print(e, file=sys.stderr)
+        sys.exit("Expected a path to a directory.")
     print(*sorted(sorted(files, key=itemgetter(0)), key=itemgetter(1), reverse=True))
 
 
