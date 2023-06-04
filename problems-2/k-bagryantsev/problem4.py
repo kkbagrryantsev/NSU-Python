@@ -1,6 +1,5 @@
-import sys
 from collections.abc import Iterator
-from sys import stderr
+from sys import exit, stderr
 
 
 class StringFinder(Iterator):
@@ -10,6 +9,7 @@ class StringFinder(Iterator):
     :string -- string to be searched through
     :substring -- string to be searched for
     """
+
     def __init__(self, string, substring):
         self._string = string
         self._substring = substring
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     try:
         _substring = input()
     except Exception as e:
-        print(e)
+        print(e, file=stderr)
         exit("Expected a string sequence of numbers.")
 
     try:
@@ -50,4 +50,4 @@ if __name__ == '__main__':
             print(f"Positions:", *_result[:5], "...")
     except Exception as e:
         print(e, file=stderr)
-        sys.exit("Check pi.txt is in current working directory and is not corrupted.")
+        exit("Check pi.txt is in current working directory and is not corrupted.")
