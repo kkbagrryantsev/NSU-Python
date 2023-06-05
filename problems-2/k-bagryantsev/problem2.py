@@ -31,12 +31,12 @@ if __name__ == '__main__':
 
                 _dict[_origin] = _translations
             _dictionary = BilingualDictionary(_dict)
-    except EnvironmentError as e:
+    except OSError as e:
         print(e, file=stderr)
-        exit("Check the file dict.txt is present in the current working directory.")
+        exit("Tried to read the file dict.txt from current working directory.")
     except Exception as e:
         print(e, file=stderr)
-        exit("Check the structure of the file. Expected a list of records: [origin] - [translations].")
+        exit("Tried to deserialize a dictionary from a file. Expected a list of records: [origin] - [translations].")
 
     try:
         with open("inverted_dict.txt", "w") as file:
@@ -45,4 +45,4 @@ if __name__ == '__main__':
             file.writelines([key + " - " + ", ".join(value) + "\n" for key, value in records])
     except Exception as e:
         print(e, file=stderr)
-        exit("Expected to write the inverted dictionary to inverted_dict.txt.")
+        exit("Tried to write the inverted dictionary to inverted_dict.txt.")
