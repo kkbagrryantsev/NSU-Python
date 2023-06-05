@@ -1,7 +1,15 @@
 import sys
 from operator import itemgetter
-from os import listdir, stat
+from os import listdir, stat, PathLike
 from os.path import isfile
+
+
+def map_file_to_filename_and_size(file: PathLike[str]) -> (str, int):
+    try:
+        return file, stat(file).st_size
+    except Exception as e:
+        print(e, file=sys.stderr)
+        print("Tried to read file attributes.")
 
 
 def print_dir_files(dirpath: str) -> None:
@@ -13,10 +21,10 @@ def print_dir_files(dirpath: str) -> None:
     https://docs.python.org/3.11/library/functions.html#sorted"""
     try:
         files = filter(isfile, listdir(dirpath))
-        files = [(file, stat(file).st_size) for file in files]
+        files = [map_file_to_filename_and_size(file) for file in files]
     except Exception as e:
         print(e, file=sys.stderr)
-        sys.exit("Expected a path to a directory.")
+        sys.exit("Tried to list all the files in the given directory and read their size using stat().")
     print(*sorted(sorted(files, key=itemgetter(0)), key=itemgetter(1), reverse=True))
 
 
